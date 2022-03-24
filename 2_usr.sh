@@ -5,7 +5,7 @@ Phase 2 - User
 "
 source $HOME/dtdc/setup.conf
 
-sed -n '/'$INSTALL_TYPE'/q;p' ~/dtdc/pkg-files/${DESKTOP_ENV}.txt | while read line
+sed -n '/'$INSTALL_TYPE'/q;p' ~/dtdc/packs.txt | while read line
 do
 	if [[ ${line} == '--END OF MINIMAL INSTALL--' ]]
 	then

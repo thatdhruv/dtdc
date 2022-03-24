@@ -202,11 +202,18 @@ userinfo() {
 }
 
 aurhelper() {
-	echo -ne "Please enter your desired AUR helper:\n"
-	options=(paru yay picaur aura trizen pacaur none)
-	select_option $? 4 "${options[@]}"
-	aur_helper=${options[$?]}
-	set_option AUR_HELPER $aur_helper
+	echo -ne "Do you want to install an AUR helper?\n"
+	options=(yes no)
+	select_option $? 1 "${options[@]}"
+	case ${options[$?]} in
+		y|Y|yes|Yes|YES)
+			set_option AUR_HELPER "yay-git";;
+		n|N|no|No|NO)
+			set_option AUR_HELPER "none";;
+		*)
+			echo "Invalid choice! Try again..."
+			aurhelper;;
+	esac
 }
 
 desktopenv() {
