@@ -117,7 +117,7 @@ if ! source $HOME/dtdc/setup.conf ; then
 		fi
 	done
 
-	echo "NAME_OF_MACHINE=${name_of_machine,,}" >>> ${HOME}/dtdc/setup.conf
+	echo "NAME_OF_MACHINE=${name_of_machine,,}" >> ${HOME}/dtdc/setup.conf
 fi
 
 echo -ne "
