@@ -23,7 +23,7 @@ select_option() {
 	get_cursor_col()	{ IFS=';' read -sdR -p $'\E[6n' ROW COL ; echo ${COL#*[}; }
 	key_input()		{
 					local key
-					IFS=read -rsn1 key 2>/dev/null >&2
+					IFS= read -rsn1 key 2>/dev/null >&2
 					if [[ $key = "" ]] ; then echo enter ; fi ;
 					if [[ $key = $'\x20' ]] ; then echo space ; fi ;
 					if [[ $key = "k" ]] ; then echo up ; fi ;
