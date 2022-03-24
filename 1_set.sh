@@ -52,7 +52,7 @@ echo -ne "
 Installing base system
 "
 if [[ ! $DESKTOP_ENV == server ]] ; then
-	sed -n '/'$INSTALL_TYPE'/q;p' $HOME/dtdc/pkg-files/pacman-pkgs.txt | while read line
+	sed -n '/'$INSTALL_TYPE'/q;p' $HOME/dtdc/packs.txt | while read line
 do
 	if [[ ${line} == '--END OF MINIMAL INSTALL--' ]] ; then
 		continue
@@ -99,9 +99,9 @@ if ! source $HOME/dtdc/setup.conf ; then
 		echo "Invalid username!"
 	done
 
-	echo "username=${username,,}" >>> ${HOME}/dtdc/setup.conf
+	echo "username=${username,,}" >> ${HOME}/dtdc/setup.conf
 	read -p "Please enter password: " password
-	echo "password=${password,,}" >>> ${HOME}/dtdc/setup.conf
+	echo "password=${password,,}" >> ${HOME}/dtdc/setup.conf
 
 	while true
 	do
