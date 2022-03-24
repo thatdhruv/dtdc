@@ -16,9 +16,9 @@ select_option() {
 	ESC=$(printf "\033")
 	cursor_blink_on()	{ printf "$ESC[?25h" ; }
 	cursor_blink_off()	{ printf "$ESC[?25l" ; }
-	cursor_to()		{ printf "$ESC[$1;$[2:-1]H" ; }
+	cursor_to()		{ printf "$ESC[$1;${2:-1}H" ; }
 	print_option()		{ printf "$2   $1 " ; }
-	print_selected()	{ printf "$2  $ESC[7n $1 $ESC[27m" ; }
+	print_selected()	{ printf "$2  $ESC[7m $1 $ESC[27m" ; }
 	get_cursor_row()	{ IFS=';' read -sdR -p $'\E[6n' ROW COL ; echo ${ROW#*[}; }
 	get_cursor_col()	{ IFS=';' read -sdR -p $'\E[6n' ROW COL ; echo ${COL#*[}; }
 	key_input()		{
@@ -32,7 +32,7 @@ select_option() {
 					if [[ $key = "l" ]] ; then echo right ; fi ;
 					if [[ $key = "a" ]] ; then echo all ; fi ;
 					if [[ $key = "n" ]] ; then echo none ; fi ;
-					if [[ $key = $'\xlb' ]] ; then
+					if [[ $key = $'\x1b' ]] ; then
 						read -rsn2 key
 						if [[ $key = [A || $key = k ]] ; then echo up ; fi ;
 						if [[ $key = [B || $key = j ]] ; then echo down ; fi ;
