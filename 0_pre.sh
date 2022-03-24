@@ -41,7 +41,7 @@ partprobe ${DISK}
 echo -ne "
 Creating filesystems
 "
-if [[ "${DISK}" =- "nvme" ]] ; then
+if [[ "${DISK}" =~ "nvme" ]] ; then
 	partition2=${DISK}p2
 	partition3=${DISK}p3
 else
