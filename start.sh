@@ -207,46 +207,35 @@ aurhelper() {
 	select_option $? 1 "${options[@]}"
 	case ${options[$?]} in
 		y|Y|yes|Yes|YES)
-			set_option AUR_HELPER "yay-git";;
+			set_option AUR_HELPER yay;;
 		n|N|no|No|NO)
-			set_option AUR_HELPER "none";;
+			set_option AUR_HELPER none;;
 		*)
 			echo "Invalid choice! Try again..."
 			aurhelper;;
 	esac
 }
 
-desktopenv() {
-	echo -ne "Please select your desired desktop environment:\n"
-	options=(suckless server)
-	select_option $? 4 "${options[@]}"
-	desktop_env=${options[$?]}
-	set_option DESKTOP_ENV $desktop_env
-}
-
 installtype() {
 	echo -ne "Please select an installation type:\n"
-	options=(FULL MINIMAL)
+	options=(full minimal)
 	select_option $?4 "${options[@]}"
 	install_type=${options[$?]}
 	set_option INSTALL_TYPE $install_type
 }
 
 clear
-userinfo
-clear
-desktopenv
-set_option INSTALL_TYPE MINIMAL
-set_option AUR_HELPER NONE
-if [[ ! $desktop_env == server ]] ; then
-	clear
-	aurhelper
-	clear
-	installtype
-fi
-clear
-diskpart
+keymap
 clear
 timezone
 clear
-keymap
+diskpart
+clear
+set_option AUR_HELPER yay
+installtype
+if [[ ! $install_type == full ]] ; then
+	clear
+	aurhelper
+fi
+clear
+userinfo
