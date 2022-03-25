@@ -5,6 +5,10 @@ xorg
 xorg-server
 xorg-xinit
 xcompmgr
+lib11
+libxft
+libxinerama
+freetype2
 feh
 firefox
 pulseaudio
