@@ -45,11 +45,11 @@ if [[ $INSTALL_TYPE == "full" ]] ; then
 	
 	git clone https://github.com/thatdhruv/dotfiles
 	cd ~
-	cp -R dotfiles/* .
+	cp -r dotfiles/. .
 	
 	git clone https://gitlab.com/dwt1/wallpapers
 	
-	rm -r .sources dotfiles
+	rm -r .sources dotfiles README.md .git
 fi
 
 echo -ne "
