@@ -130,6 +130,7 @@ if [ $(whoami) = "root" ] ; then
 
 	echo "$USERNAME:$PASSWORD" | chpasswd
 	echo "Password for $USERNAME has been set successfully"
+	echo "$USERNAME ALL=(ALL:ALL) NOPASSWD: ALL" >> /etc/sudoers
 
 	cp -R $HOME/dtdc /home/$USERNAME/
 	chown -R $USERNAME: /home/$USERNAME/dtdc
