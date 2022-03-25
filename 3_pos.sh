@@ -30,6 +30,8 @@ sed -i 's/^%wheel ALL=(ALL:ALL) NOPASSWD: ALL/# %wheel ALL=(ALL:ALL) NOPASSWD: A
 sed -i 's/^# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/' /etc/sudoers
 sed -i 's/^# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/' /etc/sudoers
 
+sed -i 's/^$USERNAME ALL=(ALL:ALL) NOPASSWD: ALL/#$USERNAME ALL=(ALL:ALL) NOPASSWD: ALL/' /etc/sudoers
+
 rm -r $HOME/dtdc
 rm -r /home/$USERNAME/dtdc
 
