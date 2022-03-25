@@ -54,7 +54,7 @@ Installing base system
 if [[ ! $INSTALL_TYPE == minimal ]] ; then
 	sed -n '/'$INSTALL_TYPE'/q;p' $HOME/dtdc/packs.txt | while read line
 do
-	if [[ ${line} == '--END OF MINIMAL INSTALL--' ]] ; then
+	if [[ ${line} == '--end of minimal install--' ]] ; then
 		continue
 	fi
 	echo "installing ${line}"
