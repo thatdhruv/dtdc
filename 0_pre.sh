@@ -7,10 +7,10 @@ source $DTDCDIR/setup.conf
 iso=$(curl -4 ifconfig.co/country-iso)
 timedatectl set-ntp true
 pacman -S --noconfirm archlinux-keyring
-pacman -S --noconfirm --needed pacman-contrib terminus-font
+pacman -S --noconfirm --needed terminus-font
 setfont ter-v18n
 sed -i 's/^#ParallelDownloads/ParallelDownloads/' /etc/pacman.conf
-pacman -S --noconfirm --needed reflector rsync grub
+pacman -S --noconfirm --needed reflector grub
 cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.old
 
 echo -ne "
