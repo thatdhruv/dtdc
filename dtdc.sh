@@ -12,7 +12,7 @@ welcome to dtdc
 source $DTDCDIR/setup.conf
 ( bash $DTDCDIR/0_pre.sh )|& tee 0_pre.log
 ( arch-chroot /mnt $HOME/dtdc/1_set.sh )|& tee 1_set.log
-if [[ ! $DESKTOP_ENV == server ]] ; then
+if [[ ! $INSTALL_TYPE == minimal ]] ; then
 	( arch-chroot /mnt /usr/bin/runuser -u $USERNAME -- /home/$USERNAME/dtdc/2_usr.sh )|& tee 2_usr.log
 fi
 ( arch-chroot /mnt $HOME/dtdc/3_pos.sh )|& tee 3_pos.log
