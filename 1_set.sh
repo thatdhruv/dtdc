@@ -14,8 +14,8 @@ systemctl enable --now NetworkManager
 echo -ne "
 Setting up mirrors for optimal download
 "
-pacman -S --noconfirm --needed pacman-contrib curl
-pacman -S --noconfirm --needed reflector rsync grub arch-install-scripts git
+pacman -S --noconfirm --needed curl
+pacman -S --noconfirm --needed reflector grub git
 cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.old
 
 cores=$(grep -c ^processor /proc/cpuinfo)
@@ -51,7 +51,7 @@ pacman -Sy --noconfirm --needed
 echo -ne "
 Installing base system
 "
-if [[ ! $DESKTOP_ENV == server ]] ; then
+if [[ ! $INSTALL_TYPE == minimal ]] ; then
 	sed -n '/'$INSTALL_TYPE'/q;p' $HOME/dtdc/packs.txt | while read line
 do
 	if [[ ${line} == '--END OF MINIMAL INSTALL--' ]] ; then
