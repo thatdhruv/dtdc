@@ -92,7 +92,6 @@ Checking if SWAP is needed
 TOTAL_MEM=$(cat /proc/meminfo | grep -i 'memtotal' | grep -o '[[:digit:]]*')
 if [[ $TOTAL_MEM -lt 8000000 ]] ; then
 	mkdir -p /mnt/opt/swap
-	chattr +C /mnt/opt/swap
 	dd if=/dev/zero of=/mnt/opt/swap/swapfile bs=1M count=2048 status=progress
 	chmod 600 /mnt/opt/swap/swapfile
 	chown root /mnt/opt/swap/swapfile
