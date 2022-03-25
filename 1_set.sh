@@ -8,8 +8,8 @@ source $HOME/dtdc/setup.conf
 echo -ne "
 Network setup
 "
-pacman -S --noconfirm --needed networkmanager dhclient
-systemctl enable --now NetworkManager
+pacman -S --noconfirm --needed networkmanager
+systemctl enable NetworkManager
 
 echo -ne "
 Setting up mirrors for optimal download
