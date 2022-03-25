@@ -18,10 +18,6 @@ echo -e "All set!"
 echo -ne "
 Enabling services
 "
-systemctl disable dhcpcd.service
-echo "DHCP disabled"
-systemctl stop dhcpcd.service
-echo "DHCP stopped"
 systemctl enable NetworkManager.service
 echo "NetworkManager enabled"
 
