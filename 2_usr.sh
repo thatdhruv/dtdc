@@ -43,13 +43,12 @@ if [[ $INSTALL_TYPE == "full" ]] ; then
 	sudo make install
 	cd ..
 	
-	git clone https://github.com/thatdhruv/dotfiles
 	cd ~
+	git clone https://github.com/thatdhruv/dotfiles
+	git clone https://gitlab.com/dwt1/wallpapers
 	cp -r dotfiles/. .
 	
-	git clone https://gitlab.com/dwt1/wallpapers
-	
-	rm -r .sources dotfiles README.md .git
+	rm -rf .sources dotfiles README.md .git
 fi
 
 echo -ne "
