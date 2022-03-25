@@ -219,7 +219,7 @@ aurhelper() {
 installtype() {
 	echo -ne "Please select an installation type:\n"
 	options=(full minimal)
-	select_option $?4 "${options[@]}"
+	select_option $? 4 "${options[@]}"
 	install_type=${options[$?]}
 	set_option INSTALL_TYPE $install_type
 }
