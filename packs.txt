@@ -1,15 +1,15 @@
-dosfstools
-linux-headers
---end of minimal install--
 xorg
 xorg-server
 xorg-xinit
 xcompmgr
-lib11
+libx11
 libxft
 libxinerama
 freetype2
 feh
 firefox
+linux-headers
+dosfstools
 pulseaudio
 pulseaudio-alsa
+pamixer
