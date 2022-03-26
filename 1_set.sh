@@ -1,18 +1,34 @@
 #!/usr/bin/env bash
 
+clear
 echo -ne "
-Phase 1 - Setup
+\033[0;31m█████████████████████████████████████████████████████████████
+█░░░░░░░░░░░░███░░░░░░░░░░░░░░█░░░░░░░░░░░░███░░░░░░░░░░░░░░█
+█░░▄▀▄▀▄▀▄▀░░░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀░░░░█░░▄▀▄▀▄▀▄▀▄▀░░█
+█░░▄▀░░░░▄▀▄▀░░█░░░░░░▄▀░░░░░░█░░▄▀░░░░▄▀▄▀░░█░░▄▀░░░░░░░░░░█
+█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░█████████
+█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░█████████
+█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░█████████
+█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░█████████
+█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░█████████
+█░░▄▀░░░░▄▀▄▀░░█████░░▄▀░░█████░░▄▀░░░░▄▀▄▀░░█░░▄▀░░░░░░░░░░█
+█░░▄▀▄▀▄▀▄▀░░░░█████░░▄▀░░█████░░▄▀▄▀▄▀▄▀░░░░█░░▄▀▄▀▄▀▄▀▄▀░░█
+█░░░░░░░░░░░░███████░░░░░░█████░░░░░░░░░░░░███░░░░░░░░░░░░░░█
+█████████████████████████████████████████████████████████████
+[phase 1]\033[0m
 "
 source $HOME/dtdc/setup.conf
 
+clear
 echo -ne "
-Network setup
+\033[0;31m[network setup]\033[0m
 "
 pacman -S --noconfirm --needed networkmanager
 systemctl enable NetworkManager
 
+clear
 echo -ne "
-Setting up mirrors for optimal download
+\033[0;31m[setting up mirrors for optimal downloads]\033[0m
 "
 pacman -S --noconfirm --needed curl
 pacman -S --noconfirm --needed reflector grub git
@@ -20,8 +36,9 @@ cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.old
 
 cores=$(grep -c ^processor /proc/cpuinfo)
 
+clear
 echo -ne "
-Your system has " $cores " cores. Applying necessary modifications to the MAFEFLAGS and compression settings.
+\033[0;31m[applying necessary modifications for "$cores" cores]\033[0m
 "
 TOTAL_MEM=$(cat /proc/meminfo | grep -i 'memtotal' | grep -o '[[:digit:]]*')
 if [[ $TOTAL_MEM -gt 8000000 ]] ; then
@@ -29,8 +46,9 @@ if [[ $TOTAL_MEM -gt 8000000 ]] ; then
 	sed -i "s/COMPRESSXZ=(xz -c -z -)/COMPRESSXZ=(xz -c -T $cores -z -)/g" /etc/makepkg.conf
 fi
 
+clear
 echo -ne "
-Setting language and locale
+\033[0;31m[setting up language and locale]\033[0m
 "
 sed -i 's/^#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
 locale-gen
@@ -48,8 +66,9 @@ sed -i 's/^#ParallelDownloads/ParallelDownloads/' /etc/pacman.conf
 sed -i "/\[multilib\]/,/Include/"'s/^#//' /etc/pacman.conf
 pacman -Sy --noconfirm --needed
 
+clear
 echo -ne "
-Installing base system
+\033[0;31m[installing utilities]\033[0m
 "
 if [[ ! $INSTALL_TYPE == minimal ]] ; then
 	sed -n '/'$INSTALL_TYPE'/q;p' $HOME/dtdc/packs.txt | while read line
@@ -62,8 +81,9 @@ do
 done
 fi
 
+clear
 echo -ne "
-Installing microcode
+\033[0;31m[installing microcode]\033[0m
 "
 proc_type=$(lscpu)
 if grep -E "GenuineIntel" <<< ${proc_type} ; then
@@ -120,8 +140,9 @@ if ! source $HOME/dtdc/setup.conf ; then
 	echo "NAME_OF_MACHINE=${name_of_machine,,}" >> ${HOME}/dtdc/setup.conf
 fi
 
+clear
 echo -ne "
-Adding user
+\033[0;31m[adding user]\033[0m
 "
 if [ $(whoami) = "root" ] ; then
 	groupadd libvirt
@@ -138,9 +159,10 @@ if [ $(whoami) = "root" ] ; then
 
 	echo $NAME_OF_MACHINE > /etc/hostname
 else
-	echo "You already seem to be a user. Proceeding with AUR installs"
+	echo "You already seem to be a user. Proceeding with PHASE 2..."
 fi
 
+clear
 echo -ne "
-Ready for phase 2
+\033[0;31m[ready for phase 2]\033[0m
 "
