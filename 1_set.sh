@@ -93,7 +93,7 @@ echo -ne "
 if [ $(whoami) = "root" ] ; then
 	useradd -m -G wheel -s /bin/bash $DTDCUSER
 	echo "[successfully added user $DTDCUSER]"
-	echo "$DTDCUSER|$DTDCPASS" | chpasswd
+	echo "$DTDCUSER:$DTDCPASS" | chpasswd
 	echo "[successfully set password for $DTDCUSER]"
 	echo "$DTDCUSER ALL=(ALL:ALL) NOPASSWD: ALL" >> /etc/sudoers
 	cp -R $HOME/dtdc /home/$DTDCUSER/
