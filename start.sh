@@ -244,13 +244,10 @@ logo() {
 
 clear
 logo
-keymap
+userinfo
 clear
 logo
-timezone
-clear
-logo
-diskpart
+installtype
 clear
 logo
 set_option AUR_HELPER yay
@@ -261,4 +258,10 @@ if [[ ! $install_type == full ]] ; then
 fi
 clear
 logo
-userinfo
+diskpart
+clear
+logo
+timezone
+clear
+logo
+keymap
