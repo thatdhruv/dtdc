@@ -28,9 +28,9 @@ pacman -S --noconfirm --needed reflector rsync grub
 echo -ne "
 \033[0;31m[setting up $iso mirrors for optimal downloads]\033[0m
 "
-mv /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.old
+cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.old
 reflector -a 48 -c $iso -f 5 -l 20 --sort rate --save /etc/pacman.d/mirrorlist
-mkdir /mnt
+mkdir /mnt &>/dev/null
 
 echo -ne "
 \033[0;31m[formatting disks]\033[0m
