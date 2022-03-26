@@ -23,7 +23,8 @@ source $HOME/dtdc/setup.conf
 echo -ne "
 \033[0;31m[setting up network services]\033[0m
 "
-pacman -S --noconfirm networkmanager
+sed -i 's/^#ParallelDownloads/ParallelDownloads/' /etc/pacman.conf
+pacman -S --noconfirm networkmanager grub git
 systemctl enable --now NetworkManager
 
 nc=$(grep -c ^processor /proc/cpuinfo)
@@ -47,7 +48,6 @@ localectl --no-ask-password set-keymap us
 localectl --no-ask-password set-locale LANG="en_US.UTF-8" LC_TIME="en_US.UTF-8"
 ln -s /usr/share/zoneinfo/${DTDCTIME} /etc/localtime
 sed -i 's/^# %wheel ALL=(ALL:ALL) NOPASSWD: ALL/%wheel ALL=(ALL:ALL) NOPASSWD: ALL/' /etc/sudoers
-sed -i 's/^#ParallelDownloads/ParallelDownloads/' /etc/pacman.conf
 
 echo -ne "
 \033[0;31m[installing packages]\033[0m
