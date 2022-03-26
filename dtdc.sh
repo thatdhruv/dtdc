@@ -4,33 +4,12 @@ set -a
 DTDCDIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 set +a
 
-clear
-echo -ne "
-\033[0;31m█████████████████████████████████████████████████████████████
-█░░░░░░░░░░░░███░░░░░░░░░░░░░░█░░░░░░░░░░░░███░░░░░░░░░░░░░░█
-█░░▄▀▄▀▄▀▄▀░░░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀░░░░█░░▄▀▄▀▄▀▄▀▄▀░░█
-█░░▄▀░░░░▄▀▄▀░░█░░░░░░▄▀░░░░░░█░░▄▀░░░░▄▀▄▀░░█░░▄▀░░░░░░░░░░█
-█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░█████████
-█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░█████████
-█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░█████████
-█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░█████████
-█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░█████████
-█░░▄▀░░░░▄▀▄▀░░█████░░▄▀░░█████░░▄▀░░░░▄▀▄▀░░█░░▄▀░░░░░░░░░░█
-█░░▄▀▄▀▄▀▄▀░░░░█████░░▄▀░░█████░░▄▀▄▀▄▀▄▀░░░░█░░▄▀▄▀▄▀▄▀▄▀░░█
-█░░░░░░░░░░░░███████░░░░░░█████░░░░░░░░░░░░███░░░░░░░░░░░░░░█
-█████████████████████████████████████████████████████████████
-[welcome to dtdc - dt's distro cloner!]\033[0m
-"
-
-( bash $DTDCDIR/start.sh )|& tee start.log
+bash $DTDCDIR/start.sh
 source $DTDCDIR/setup.conf
-( bash $DTDCDIR/0_pre.sh )|& tee 0_pre.log
-( arch-chroot /mnt $HOME/dtdc/1_set.sh )|& tee 1_set.log
-if [[ ! $INSTALL_TYPE == minimal ]] ; then
-	( arch-chroot /mnt /usr/bin/runuser -u $USERNAME -- /home/$USERNAME/dtdc/2_usr.sh )|& tee 2_usr.log
-fi
-( arch-chroot /mnt $HOME/dtdc/3_pos.sh )|& tee 3_pos.log
-cp -v *.log /mnt/home/$USERNAME
+bash $DTDCDIR/0_pre.sh
+arch-chroot /mnt $HOME/dtdc/1_set.sh
+arch-chroot /mnt /usr/bin/runuser -u $DTDCUSER -- /home/$DTDCUSER/dtdc/2_usr.sh
+arch-chroot /mnt $HOME/dtdc/3_pos.sh
 
 clear
 echo -ne "
