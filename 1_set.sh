@@ -56,7 +56,7 @@ while read line
 do
 	echo "[installing ${line}]"
 	sudo pacman -S --noconfirm --needed ${line}
-done
+done < $DTDCDIR/packs.txt
 
 echo -ne "
 \033[0;31m[installing microcode]\033[0m
