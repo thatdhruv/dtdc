@@ -38,9 +38,9 @@ echo -ne "
 umount -A --recursive /mnt
 sgdisk -Z ${DTDCDISK}
 sgdisk -a 2048 -o ${DTDCDISK}
-sgdisk -n 1::+1M --type=1:ef02 --change-name=1:'BIOSBOOT' ${DTDCDISK}
-sgdisk -n 2::+300M --type=2:ef00 --change-name=2:'EFIBOOT' ${DTDCDISK}
-sgdisk -n 3::-0 --type=3:8300 --change-name=3:'ROOT' ${DTDCDISK}
+sgdisk -n 1::+1M --typecode=1:ef02 --change-name=1:'BIOSBOOT' ${DTDCDISK}
+sgdisk -n 2::+300M --typecode=2:ef00 --change-name=2:'EFIBOOT' ${DTDCDISK}
+sgdisk -n 3::-0 --typecode=3:8300 --change-name=3:'ROOT' ${DTDCDISK}
 if [[ ! -d "/sys/firmware/efi" ]] ; then
 	sgdisk -A 1:set:2 ${DTDCDISK}
 fi
