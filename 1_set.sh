@@ -28,7 +28,7 @@ systemctl enable --now NetworkManager
 
 nc=$(grep -c ^processor /proc/cpuinfo)
 echo -ne "
-\033[0;31m[setting up makeflags and compression settings for "$nc" nc]\033[0m
+\033[0;31m[setting up makeflags and compression settings for "$nc" cores]\033[0m
 "
 DTDCTMEM=$(cat /proc/meminfo | grep -i 'memtotal' | grep -o '[[:digit:]]*')
 if [[ $DTDCTMEM -gt 8000000 ]] ; then
