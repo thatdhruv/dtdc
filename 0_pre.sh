@@ -1,7 +1,20 @@
 #!/usr/bin/env bash
 
 echo -ne "
-Welcome to DTDC - DT's Distro Cloner!
+\033[0;31m█████████████████████████████████████████████████████████████
+█░░░░░░░░░░░░███░░░░░░░░░░░░░░█░░░░░░░░░░░░███░░░░░░░░░░░░░░█
+█░░▄▀▄▀▄▀▄▀░░░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀░░░░█░░▄▀▄▀▄▀▄▀▄▀░░█
+█░░▄▀░░░░▄▀▄▀░░█░░░░░░▄▀░░░░░░█░░▄▀░░░░▄▀▄▀░░█░░▄▀░░░░░░░░░░█
+█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░█████████
+█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░█████████
+█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░█████████
+█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░█████████
+█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░█████████
+█░░▄▀░░░░▄▀▄▀░░█████░░▄▀░░█████░░▄▀░░░░▄▀▄▀░░█░░▄▀░░░░░░░░░░█
+█░░▄▀▄▀▄▀▄▀░░░░█████░░▄▀░░█████░░▄▀▄▀▄▀▄▀░░░░█░░▄▀▄▀▄▀▄▀▄▀░░█
+█░░░░░░░░░░░░███████░░░░░░█████░░░░░░░░░░░░███░░░░░░░░░░░░░░█
+█████████████████████████████████████████████████████████████
+[phase 0]\033[0m
 "
 source $DTDCDIR/setup.conf
 iso=$(curl -4 ifconfig.co/country-iso)
@@ -11,19 +24,22 @@ sed -i 's/^#ParallelDownloads/ParallelDownloads/' /etc/pacman.conf
 pacman -S --noconfirm --needed reflector grub
 cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.old
 
+clear
 echo -ne "
-Setting up $iso mirrors for faster downloads
+\033[0;31m[setting up $iso mirrors for optimal downloads]\033[0m
 "
 reflector -a 48 -c $iso -f 5 -l 20 --sort rate --save /etc/pacman.d/mirrorlist
 mkdir /mnt &>/dev/null
 
+clear
 echo -ne "
-Installing prerequisites
+\033[0;31m[installing prerequisites]\033[0m
 "
 pacman -S --noconfirm --needed gptfdisk
 
+clear
 echo -ne "
-Formatting disk
+\033[0;31m[formatting disk]\033[0m
 "
 umount -A --recursive /mnt
 sgdisk -Z ${DISK}
@@ -36,8 +52,9 @@ if [[ ! -d "/sys/firmware/efi" ]] ; then
 fi
 partprobe ${DISK}
 
+clear
 echo -ne "
-Creating filesystems
+\033[0;31m[creating filesystems]\033[0m
 "
 if [[ "${DISK}" =~ "nvme" ]] ; then
 	partition2=${DISK}p2
@@ -61,8 +78,9 @@ if ! grep -qs '/mnt' /proc/mounts ; then
 	reboot now
 fi
 
+clear
 echo -ne "
-Installing the base system
+\033[0;31m[installing the base system]\033[0m
 "
 pacstrap /mnt base base-devel linux linux-firmware vim sudo archlinux-keyring --noconfirm --needed
 echo "keyserver hkp://keyserver.ubuntu.com" >> /mnt/etc/pacman.d/gnupg/gpg.conf
@@ -75,8 +93,9 @@ Generated /etc/fstab:
 "
 cat /mnt/etc/fstab
 
+clear
 echo -ne "
-Installing bootloader
+\033[0;31m[installing bootloader]\033[0m
 "
 if [[ ! -d "/sys/firmware/efi" ]] ; then
 	grub-install --boot-directory=/mnt/boot ${DISK}
@@ -84,8 +103,9 @@ else
 	pacstrap /mnt efibootmgr --noconfirm --needed
 fi
 
+clear
 echo -ne "
-Checking if SWAP is needed
+\033[0;31m[checking if SWAP is needed]\033[0m
 "
 TOTAL_MEM=$(cat /proc/meminfo | grep -i 'memtotal' | grep -o '[[:digit:]]*')
 if [[ $TOTAL_MEM -lt 8000000 ]] ; then
@@ -98,6 +118,7 @@ if [[ $TOTAL_MEM -lt 8000000 ]] ; then
 	echo "/opt/swap/swapfile    none    swap    sw      0       0" >> /mnt/etc/fstab
 fi
 
+clear
 echo -ne "
-Getting ready for phase 1
+\033[0;31m[ready for phase 1]\033[0m
 "
