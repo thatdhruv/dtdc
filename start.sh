@@ -52,19 +52,6 @@ userInfo() {
 	setOption DTDCHOST $dtdcHost
 }
 
-isSSD() {
-	echo
-	read -p "Is this an SSD? (y/n): " ssd
-	if [[ $ssd == 'y' ]] || [[ $ssd == 'Y' ]] ; then
-		setOption DTDCMOPS "noatime,compress=zstd,commit=120,ssd"
-	elif [[ $ssd == 'n' ]] || [[ $ssd == 'N' ]] ; then
-		setOption DTDCMOPS "noatime,compress=zstd,commit=120"
-	else
-		echo -ne '\nInvalid choice! Please try again...'
-		isSSD
-	fi
-}
-
 diskInfo() {
 	echo -ne 'Select the disk to install on:\n'
 	lsblk -n --output TYPE,KNAME,SIZE | awk '$1=="disk"{print "/dev/"$2" - "$3}'
@@ -73,7 +60,6 @@ diskInfo() {
 	echo
 	echo -ne "${dtdcDisk} selected"
 	setOption DTDCDISK ${dtdcDisk}
-	isSSD
 }
 
 
