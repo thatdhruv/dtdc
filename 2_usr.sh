@@ -49,6 +49,10 @@ cd ..
 git clone https://aur.archlinux.org/ttf-yosemite-san-francisco-font-git.git
 cd ttf-yosemite-san-francisco-font-git
 makepkg -si --noconfirm --needed
+cd ..
+git clone https://aur.archlinux.org/ttf-monaco.git
+cd ttf-monaco
+makepkg -si --noconfirm --needed
 cd ~
 git clone https://github.com/thatdhruv/dotfiles
 cp -r dotfiles/. .
