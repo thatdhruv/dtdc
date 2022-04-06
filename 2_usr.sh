@@ -45,6 +45,10 @@ git clone https://github.com/thatdhruv/slstatus
 cd slstatus
 make
 sudo make install
+cd ..
+git clone https://aur.archlinux.org/ttf-yosemite-san-francisco-font-git.git
+cd ttf-yosemite-san-francisco-font-git
+makepkg -si
 cd ~
 git clone https://github.com/thatdhruv/dotfiles
 cp -r dotfiles/. .
