@@ -33,6 +33,11 @@ reflector -a 48 -c $iso -f 5 -l 20 --sort rate --save /etc/pacman.d/mirrorlist
 mkdir /mnt &>/dev/null
 
 echo -ne "
+\033[0;31m[installing prerequisites]\033[0m
+"
+pacman -S --noconfirm --needed glibc
+
+echo -ne "
 \033[0;31m[formatting disks]\033[0m
 "
 umount -A --recursive /mnt
