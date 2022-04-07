@@ -46,13 +46,14 @@ cd slstatus
 make
 sudo make install
 cd ..
-git clone https://aur.archlinux.org/ttf-yosemite-san-francisco-font-git.git
-cd ttf-yosemite-san-francisco-font-git
+git clone https://aur.archlinux.org/otf-san-francisco-mono-git.git
+cd otf-san-francisco-mono-git
 makepkg -si --noconfirm --needed
 cd ..
-git clone https://aur.archlinux.org/ttf-monaco.git
-cd ttf-monaco
-makepkg -si --noconfirm --needed
+git clone https://github.com/Karmenzind/monaco-nerd-fonts
+cd monaco-nerd-fonts && cd fonts
+sudo cp 'Monaco Nerd Font Complete Mono.otf' /usr/share/fonts/apple/'Monaco Nerd Font Complete Mono.otf'
+sudo fc-cache -fv
 cd ~
 git clone https://github.com/thatdhruv/dotfiles
 cp -r dotfiles/. .
