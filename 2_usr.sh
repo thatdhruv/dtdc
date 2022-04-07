@@ -46,8 +46,8 @@ cd slstatus
 make
 sudo make install
 cd ..
-git clone https://aur.archlinux.org/otf-san-francisco-mono-git.git
-cd otf-san-francisco-mono-git
+git clone https://aur.archlinux.org/otf-san-francisco-mono.git
+cd otf-san-francisco-mono
 makepkg -si --noconfirm --needed
 cd ..
 git clone https://github.com/Karmenzind/monaco-nerd-fonts
