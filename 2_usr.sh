@@ -52,7 +52,7 @@ makepkg -si --noconfirm --needed
 cd ..
 git clone https://github.com/Karmenzind/monaco-nerd-fonts
 cd monaco-nerd-fonts && cd fonts
-sudo cp 'Monaco Nerd Font Complete Mono.otf' /usr/share/fonts/apple/'Monaco Nerd Font Complete Mono.otf'
+sudo cp 'Monaco Nerd Font Complete Mono.otf' /usr/share/fonts/apple/'Monaco Nerd Font Complete Mono.ttf'
 sudo fc-cache -fv
 cd ~
 git clone https://github.com/thatdhruv/dotfiles
