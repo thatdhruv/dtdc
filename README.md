@@ -2,10 +2,10 @@
 arch installer script
 
 run:
-  pacman -Sy git glibc --noconfirm --needed
+  pacman -Sy git --noconfirm --needed
   git clone https://github.com/thatdhruv/dtdc
   cd dtdc
-  ./dtdc
+  ./dtdc.sh
 
 (work in progress)
 forked from ChrisTitusTech/ArchTitus
