@@ -62,7 +62,7 @@ rm -rf .sources dotfiles .git README.md
 echo -ne "
 \033[0;31m[downloading wallpapers]\033[0m
 "
-git clone https://gitlab.com/dwt1/wallpapers
+git clone https://gitlab.com/dwt1/wallpapers .wallpapers
 
 echo -ne "
 \033[0;31m[ready for phase 3]\033[0m
