@@ -13,3 +13,5 @@ dosfstools
 pulseaudio
 pulseaudio-alsa
 pamixer
+dunst
+libnotify
