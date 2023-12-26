@@ -1,5 +1,5 @@
-# dtdc
-arch installer script
+# DTDC
+DT's Distro Cloner
 
 run:
   pacman -Sy git --noconfirm --needed
