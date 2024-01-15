@@ -3,5 +3,5 @@ DT's Distro Cloner - Inspired by [ArchTitus](https://github.com/christitustech/a
 
 To start, run:
 ```
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/thatdhruv/dtdc/HEAD/install.sh)"
+bash <(curl -L raw.githubusercontent.com/thatdhruv/dtdc/HEAD/install.sh)
 ```
