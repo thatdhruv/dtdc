@@ -18,3 +18,5 @@ libnotify
 scrot
 terminus-font
 eza
+neovim
+ttf-fira-code
