@@ -64,7 +64,7 @@ diskInfo() {
 
 
 timezone() {
-	dtdcTimezone="$(curl --fail https://ipapi.co/timezone)"
+	dtdcTimezone="$(curl --fail --silent https://ipapi.co/timezone)"
 	echo -ne "Your timezone seems to be '${dtdcTimezone}'"
 	echo
 	read -p "Is this correct? (y/n): " tz
