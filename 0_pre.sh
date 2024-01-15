@@ -58,7 +58,7 @@ else
 	partition3=${DTDCDISK}3
 fi
 mkfs.vfat -F32 -n "EFIBOOT" ${partition2}
-mkfs.ext4 -L ROOT ${partition3}
+mkfs.ext4 -F -L ROOT ${partition3}
 mount -t ext4 ${partition3} /mnt
 mkdir -p /mnt/boot/efi
 mount -t vfat -L EFIBOOT /mnt/boot/
