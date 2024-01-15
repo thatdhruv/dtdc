@@ -1,5 +1,5 @@
 # DTDC
-DT's Distro Cloner
+DT's Distro Cloner - Inspired by [ArchTitus](https://github.com/christitustech/archtitus)
 
 To start, run:
 ```
