@@ -49,6 +49,7 @@ cd ~
 git clone https://github.com/thatdhruv/dotfiles
 cp -r dotfiles/. .
 rm -rf .sources dotfiles .git README.md
+chmod +x .scripts/*.sh
 
 echo -ne "
 \033[0;31m[ready for phase 3]\033[0m
