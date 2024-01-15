@@ -16,3 +16,4 @@ pamixer
 dunst
 libnotify
 scrot
+terminus-font
