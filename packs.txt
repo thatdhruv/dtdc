@@ -20,3 +20,4 @@ terminus-font
 eza
 neovim
 ttf-nerd-fonts-symbols
+sxiv
