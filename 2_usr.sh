@@ -47,6 +47,7 @@ make
 sudo make install
 cd ~
 git clone https://github.com/thatdhruv/dotfiles
+rm -rf dotfiles/patches
 cp -r dotfiles/. .
 rm -rf .sources dotfiles .git README.md
 chmod +x .scripts/*.sh
