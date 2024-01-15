@@ -67,8 +67,8 @@ timezone() {
 	dtdcTimezone="$(curl --fail --silent https://ipapi.co/timezone)"
 	echo -ne "Your timezone seems to be '${dtdcTimezone}'"
 	echo
-	read -p "Is this correct? (y/n): " tz
-	if [[ $tz == 'y' ]] || [[ $tz == 'Y' ]] ; then
+	read -p "Is this correct? (Y/n): " tz
+	if [[ $tz == 'y' ]] || [[ $tz == 'Y' ]] || [[ $tz == '' ]] ; then
 		echo "Timezone set to ${dtdcTimezone}"
 		setOption DTDCTIME $dtdcTimezone
 	elif [[ $tz == 'n' ]] || [[ $tz == 'N' ]] ; then
