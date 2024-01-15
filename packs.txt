@@ -19,4 +19,4 @@ scrot
 terminus-font
 eza
 neovim
-ttf-fira-code
+ttf-nerd-fonts-symbols
